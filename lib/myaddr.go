@@ -16,6 +16,10 @@ type Provider struct {
 	key string
 }
 
+func NewProvider(key string) *Provider {
+	return &Provider{key: key}
+}
+
 // AppendRecords adds records to a zone. It returns the records that were added.
 func (p *Provider) AppendRecords(ctx context.Context, zone string, records []libdns.Record) ([]libdns.Record, error) {
 	return p.SetRecords(ctx, zone, records)
