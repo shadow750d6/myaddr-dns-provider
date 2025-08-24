@@ -13,11 +13,7 @@ import (
 
 // Provider implements libdns.Provider for myaddr.
 type Provider struct {
-	key string
-}
-
-func NewProvider(key string) *Provider {
-	return &Provider{key: key}
+	Key string
 }
 
 // AppendRecords adds records to a zone. It returns the records that were added.
@@ -37,7 +33,7 @@ func (p *Provider) SetRecords(ctx context.Context, zone string, records []libdns
 		}
 
 		payload := map[string]string{
-			"key":            p.key,
+			"key":            p.Key,
 			"acme_challenge": r.RR().Data,
 		}
 		jsonPayload, err := json.Marshal(payload)
